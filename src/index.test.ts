@@ -1,12 +1,3 @@
-import { greet } from '.';
-
-describe('index', () => {
-  describe('greet', () => {
-    it('should return greeting with name specified', () => {
-      const testName = 'testName';
-      const greetingPhrase = greet(testName);
-
-      expect(greetingPhrase).toEqual(`Hello ${testName}!`);
-    });
-  });
+it('1 should equal to 1', () => {
+  expect(1).toEqual(1);
 });

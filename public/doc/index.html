@@ -1,0 +1,1198 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID19 Statistics API | API Reference</title>
+    <link rel="stylesheet" href="stylesheets/foundation.min.css" />
+    <link rel="stylesheet" href="stylesheets/spectacle.min.css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- <script src="javascripts/foundation.js"></script> -->
+    <script src="javascripts/spectacle.min.js"></script>
+  </head>
+  <body id="spectacle">
+    <div id="page" class="drawer-layout drawer-slide-right-large">
+      <div id="sidebar">
+        <button class="close-button" aria-label="Close menu" type="button" data-drawer-close>
+          <span aria-hidden="true">×</span>
+        </button>
+        <div id="logo">
+          <img src="images/logo.webp" title="COVID19 Statistics API" /> </div>
+        <nav id="nav" role="navigation">
+          <h5>Topics</h5>
+          <a href="#introduction">Introduction</a>
+          <h5>Paths</h5>
+          <!-- <section>
+                <a href="#path-global">global</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation-global-post"> Global </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
+          <h5>Schema Definitions</h5>
+          <a href="#definition-AUStats"> AUStats </a>
+          <a href="#definition-Boolean"> Boolean </a>
+          <a href="#definition-CacheControlScope"> CacheControlScope </a>
+          <a href="#definition-GlobalStats"> GlobalStats </a>
+          <a href="#definition-History"> History </a>
+          <a href="#definition-Int"> Int </a>
+          <a href="#definition-Stats"> Stats </a>
+          <a href="#definition-String"> String </a>
+          <a href="#definition-Upload"> Upload </a>
+        </nav>
+      </div>
+      <div id="docs" class="row collapse expanded drawer" data-drawer>
+        <button class="floating-menu-icon" type="button" data-drawer-slide="right">
+          <span class="hamburger"></span>
+        </button>
+        <div class="example-box doc-content"></div>
+        <article>
+          <h1 class="doc-title">COVID19 Statistics API
+            <span>API Reference</span>
+          </h1>
+          <div id="introduction" data-traverse-target="introduction">
+            <div class="doc-row">
+              <div class="doc-copy">
+                <p>GraphQL API to retrieve the latest COVID19 infection statistics by country and region. The data updated daily from John Hopkins University at 1pm Australia Eastern time. The API was developed to primarily focus Australia COVID19 data but more support will be added to the rest of the world.</p>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>API Endpoints</h5>
+                  <!-- <div class="hljs"> --><pre><code>Prod:
+https://api.covidstats.com.au/graphql
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <h1>Paths</h1>
+          <span id="path-global"></span>
+          <div id="operation-global-post" class="operation panel" data-traverse-target="operation-global-post">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Queries">Queries</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-summary">Global</span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description">
+                  <p>The top level object of the Covid Stats API. It returns the current global data of COVID 19 infections combined with history statistics</p>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h3>
+                    <h5>Request Content-Types:
+                      <span>application/json</span>
+                    </h5>
+                    <h5>Query</h5>
+                    <!-- <div class="hljs"> -->
+                    <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> global<span class="hljs-tag">{
+  <span class="hljs-symbol">global<span class="hljs-tag">{
+    <span class="hljs-symbol">totalConfirmedCases</span>
+    <span class="hljs-symbol">newlyConfirmedCases</span>
+    <span class="hljs-symbol">totalDeaths</span>
+    <span class="hljs-symbol">newDeaths</span>
+    <span class="hljs-symbol">totalRecoveredCases</span>
+    <span class="hljs-symbol">newlyRecoveredCases</span>
+    <span class="hljs-symbol">lastUpdatedDate</span>
+    <span class="hljs-symbol">history</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                    </html>
+                    <!-- </div> -->
+                    <a href="https://api.covidstats.com.au/graphql?query=query%20global%7B%0A%20%20global%7B%0A%20%20%20%20totalConfirmedCases%0A%20%20%20%20newlyConfirmedCases%0A%20%20%20%20totalDeaths%0A%20%20%20%20newDeaths%0A%20%20%20%20totalRecoveredCases%0A%20%20%20%20newlyRecoveredCases%0A%20%20%20%20lastUpdatedDate%0A%20%20%20%20history%0A%20%20%7D%0A%7D" target="_blank">Try it now
+                      <a/> </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                    </div>
+                    <div class="prop-value">
+                      <p>Successful operation</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name">type</div>
+                    <div class="prop-value">
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/GlobalStats">GlobalStats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;global&quot;</span>: {
+      <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <h1>Schema Definitions</h1>
+          <div id="definition-AUStats" class="definition panel" data-traverse-target="definition-AUStats">
+            <h2 class="panel-title">
+              <a name="/definitions/AUStats"></a>AUStats: object
+              <!-- <span class="json-property-type"><div class="json-property-type">object</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>COVID19 Statistics of Australia</p>
+                </section>
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="totalConfirmedCases" class="has-description">
+                      <span class="json-property-name">totalConfirmedCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total confirmed cases of COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newlyConfirmedCases" class="has-description">
+                      <span class="json-property-name">newlyConfirmedCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The newly confirmed cases of COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="totalDeaths" class="has-description">
+                      <span class="json-property-name">totalDeaths:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total death toll caused by COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newDeaths" class="has-description">
+                      <span class="json-property-name">newDeaths:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The death toll caused by COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="totalRecoveredCases" class="has-description">
+                      <span class="json-property-name">totalRecoveredCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total number of recovered cases from COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newlyRecoveredCases" class="has-description">
+                      <span class="json-property-name">newlyRecoveredCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The number of newly recovered cases from COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="lastUpdatedDate" class="has-description">
+                      <span class="json-property-name">lastUpdatedDate:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-string">
+                          <a class="json-schema-ref" href="#/definitions/String">String</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The date and time the data was last updated at John Hopkins University</p>
+                    </dd>
+                    <dt data-property-name="history" class="has-description">
+                      <span class="json-property-name">history:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-array">
+                          <a class="json-schema-ref" href="#/definitions/History">History</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>The past COVID19 infection statistics</p>
+                    </dd>
+                    <dt data-property-name="NSW" class="has-description">
+                      <span class="json-property-name">NSW:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of New South Wales</p>
+                    </dd>
+                    <dt data-property-name="NT" class="has-description">
+                      <span class="json-property-name">NT:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Northern Territory</p>
+                    </dd>
+                    <dt data-property-name="QLD" class="has-description">
+                      <span class="json-property-name">QLD:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Queensland</p>
+                    </dd>
+                    <dt data-property-name="SA" class="has-description">
+                      <span class="json-property-name">SA:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of South Australia</p>
+                    </dd>
+                    <dt data-property-name="TAS" class="has-description">
+                      <span class="json-property-name">TAS:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Tasmania</p>
+                    </dd>
+                    <dt data-property-name="VIC" class="has-description">
+                      <span class="json-property-name">VIC:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Victoria</p>
+                    </dd>
+                    <dt data-property-name="WA" class="has-description">
+                      <span class="json-property-name">WA:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Western Australia</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;history&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+    }
+  ],
+  <span class="hljs-attr">&quot;NSW&quot;</span>: {
+    <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;history&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+        <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+        <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+      }
+    ]
+  },
+  <span class="hljs-attr">&quot;NT&quot;</span>: {
+    <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;history&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+        <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+        <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+      }
+    ]
+  },
+  <span class="hljs-attr">&quot;QLD&quot;</span>: {
+    <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+  }
+}
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Boolean" class="definition panel" data-traverse-target="definition-Boolean">
+            <h2 class="panel-title">
+              <a name="/definitions/Boolean"></a>Boolean: boolean
+              <!-- <span class="json-property-type"><div class="json-property-type">boolean</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>Boolean</code> scalar type represents <code>true</code> or <code>false</code>.</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">boolean</span>
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-CacheControlScope" class="definition panel" data-traverse-target="definition-CacheControlScope">
+            <h2 class="panel-title">
+              <a name="/definitions/CacheControlScope"></a>CacheControlScope: string
+              <!-- <span class="json-property-type"><div class="json-property-type"></div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-anyOf">
+                  <dl>
+                    <dt>
+                      <div class="json-property-type">object</div>
+                      <span class="json-property-enum" title="Possible values">
+                        <span class="json-property-enum-item">PUBLIC</span>
+                      </span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd> </dd>
+                    <dt>
+                      <div class="json-property-type">object</div>
+                      <span class="json-property-enum" title="Possible values">
+                        <span class="json-property-enum-item">PRIVATE</span>
+                      </span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd> </dd>
+                  </dl>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-GlobalStats" class="definition panel" data-traverse-target="definition-GlobalStats">
+            <h2 class="panel-title">
+              <a name="/definitions/GlobalStats"></a>GlobalStats: object
+              <!-- <span class="json-property-type"><div class="json-property-type">object</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="totalConfirmedCases" class="has-description">
+                      <span class="json-property-name">totalConfirmedCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total confirmed cases of COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newlyConfirmedCases" class="has-description">
+                      <span class="json-property-name">newlyConfirmedCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The newly confirmed cases of COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="totalDeaths" class="has-description">
+                      <span class="json-property-name">totalDeaths:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total death toll caused by COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newDeaths" class="has-description">
+                      <span class="json-property-name">newDeaths:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The death toll caused by COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="totalRecoveredCases" class="has-description">
+                      <span class="json-property-name">totalRecoveredCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total number of recovered cases from COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newlyRecoveredCases" class="has-description">
+                      <span class="json-property-name">newlyRecoveredCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The number of newly recovered cases from COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="lastUpdatedDate" class="has-description">
+                      <span class="json-property-name">lastUpdatedDate:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-string">
+                          <a class="json-schema-ref" href="#/definitions/String">String</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The date and time the data was last updated at John Hopkins University</p>
+                    </dd>
+                    <dt data-property-name="history" class="has-description">
+                      <span class="json-property-name">history:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-array">
+                          <a class="json-schema-ref" href="#/definitions/History">History</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>The past COVID19 infection statistics</p>
+                    </dd>
+                    <dt data-property-name="AU" class="has-description">
+                      <span class="json-property-name">AU:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/AUStats">AUStats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Australia</p>
+                    </dd>
+                    <dt data-property-name="CN" class="has-description">
+                      <span class="json-property-name">CN:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of China</p>
+                    </dd>
+                    <dt data-property-name="IT" class="has-description">
+                      <span class="json-property-name">IT:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Italy</p>
+                    </dd>
+                    <dt data-property-name="JP" class="has-description">
+                      <span class="json-property-name">JP:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Japan</p>
+                    </dd>
+                    <dt data-property-name="KR" class="has-description">
+                      <span class="json-property-name">KR:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Korea</p>
+                    </dd>
+                    <dt data-property-name="US" class="has-description">
+                      <span class="json-property-name">US:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of United States</p>
+                    </dd>
+                    <dt data-property-name="UK" class="has-description">
+                      <span class="json-property-name">UK:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of United Kingdom</p>
+                    </dd>
+                    <dt data-property-name="FR" class="has-description">
+                      <span class="json-property-name">FR:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of France</p>
+                    </dd>
+                    <dt data-property-name="DE" class="has-description">
+                      <span class="json-property-name">DE:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Germany</p>
+                    </dd>
+                    <dt data-property-name="ES" class="has-description">
+                      <span class="json-property-name">ES:</span>
+                      <div class="json-property-type">
+                        <div class="">
+                          <a class="json-schema-ref" href="#/definitions/Stats">Stats</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>COVID19 Statistics of Spain</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;history&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+    }
+  ],
+  <span class="hljs-attr">&quot;AU&quot;</span>: {
+    <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;history&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+        <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+        <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+      }
+    ],
+    <span class="hljs-attr">&quot;NSW&quot;</span>: {
+      <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;history&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+          <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+          <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+        }
+      ]
+    },
+    <span class="hljs-attr">&quot;NT&quot;</span>: {
+      <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-History" class="definition panel" data-traverse-target="definition-History">
+            <h2 class="panel-title">
+              <a name="/definitions/History"></a>History: object
+              <!-- <span class="json-property-type"><div class="json-property-type">object</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>COVID19 infection statistics of a past day</p>
+                </section>
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="date" class="has-description">
+                      <span class="json-property-name">date:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-string">
+                          <a class="json-schema-ref" href="#/definitions/String">String</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The date of the statistics is for</p>
+                    </dd>
+                    <dt data-property-name="lastUpdatedDate" class="has-description">
+                      <span class="json-property-name">lastUpdatedDate:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-string">
+                          <a class="json-schema-ref" href="#/definitions/String">String</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The date and time the data was last updated at John Hopkins University</p>
+                    </dd>
+                    <dt data-property-name="confirmed" class="has-description">
+                      <span class="json-property-name">confirmed:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total confirmed cases of COVID19 infection on the day</p>
+                    </dd>
+                    <dt data-property-name="deaths" class="has-description">
+                      <span class="json-property-name">deaths:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The death toll caused by COVID19 infection of the day</p>
+                    </dd>
+                    <dt data-property-name="recovered" class="has-description">
+                      <span class="json-property-name">recovered:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The number of newly recovered cases from COVID19 infection of the day</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+}
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Int" class="definition panel" data-traverse-target="definition-Int">
+            <h2 class="panel-title">
+              <a name="/definitions/Int"></a>Int: number
+              <!-- <span class="json-property-type"><div class="json-property-type">number</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>Int</code> scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">number</span>
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Stats" class="definition panel" data-traverse-target="definition-Stats">
+            <h2 class="panel-title">
+              <a name="/definitions/Stats"></a>Stats: object
+              <!-- <span class="json-property-type"><div class="json-property-type">object</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>COVID19 Statistics of a generic region, for instance NSW, VIC or QLD</p>
+                </section>
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="totalConfirmedCases" class="has-description">
+                      <span class="json-property-name">totalConfirmedCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total confirmed cases of COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newlyConfirmedCases" class="has-description">
+                      <span class="json-property-name">newlyConfirmedCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The newly confirmed cases of COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="totalDeaths" class="has-description">
+                      <span class="json-property-name">totalDeaths:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total death toll caused by COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newDeaths" class="has-description">
+                      <span class="json-property-name">newDeaths:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The death toll caused by COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="totalRecoveredCases" class="has-description">
+                      <span class="json-property-name">totalRecoveredCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The total number of recovered cases from COVID19 infection</p>
+                    </dd>
+                    <dt data-property-name="newlyRecoveredCases" class="has-description">
+                      <span class="json-property-name">newlyRecoveredCases:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-number">
+                          <a class="json-schema-ref" href="#/definitions/Int">Int</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The number of newly recovered cases from COVID19 infection of the past day</p>
+                    </dd>
+                    <dt data-property-name="lastUpdatedDate" class="has-description">
+                      <span class="json-property-name">lastUpdatedDate:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-string">
+                          <a class="json-schema-ref" href="#/definitions/String">String</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>The date and time the data was last updated at John Hopkins University</p>
+                    </dd>
+                    <dt data-property-name="history" class="has-description">
+                      <span class="json-property-name">history:</span>
+                      <div class="json-property-type">
+                        <div class="json-schema-ref-array">
+                          <a class="json-schema-ref" href="#/definitions/History">History</a>
+                        </div>
+                      </div>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>The past COVID19 infection statistics</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;totalConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newlyConfirmedCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;totalDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newDeaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;totalRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;newlyRecoveredCases&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;history&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;date&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;lastUpdatedDate&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;confirmed&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;deaths&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+      <span class="hljs-attr">&quot;recovered&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+    }
+  ]
+}
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-String" class="definition panel" data-traverse-target="definition-String">
+            <h2 class="panel-title">
+              <a name="/definitions/String"></a>String: string
+              <!-- <span class="json-property-type"><div class="json-property-type">string</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>String</code> scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.</p>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Upload" class="definition panel" data-traverse-target="definition-Upload">
+            <h2 class="panel-title">
+              <a name="/definitions/Upload"></a>Upload: object
+              <!-- <span class="json-property-type"><div class="json-property-type">object</div>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>Upload</code> scalar type represents a file upload.</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> -->
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">object</span>
+</code></pre> </body>
+                  </html>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="doc-row no-margin">
+            <div class="doc-copy doc-separator">
+              <a class="powered-by" href="https://github.com/wayfair/dociql">Documentation by
+                <span>DociQL</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>
