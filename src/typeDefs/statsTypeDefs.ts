@@ -60,39 +60,71 @@ const statsTypeDefs = `
 `;
 
 const australiaStatsTypeDefs = `
-  ${Object.values(countries.Australia.states)
-    .map((state) => `${state.code} : Stats!`)
+  ${Object.entries(countries.Australia.states)
+    .map(
+      ([stateName, state]) => `
+    """
+    COVID19 Statistics in ${stateName}
+    """
+    ${state.code} : Stats!`,
+    )
     .join('\r\n')}
 `;
 
 const canadaStatsTypeDefs = `
-  ${Object.values(countries.Canada.states)
-    .map((state) => `${state.code} : Stats!`)
+  ${Object.entries(countries.Canada.states)
+    .map(
+      ([stateName, state]) => `
+    """
+    COVID19 Statistics in ${stateName}
+    """
+    ${state.code} : Stats!`,
+    )
     .join('\r\n')}
 `;
 
 const usStatsTypeDefs = `
-  ${Object.values(countries.US.states)
-    .map((state) => `${state.code} : Stats!`)
+  ${Object.entries(countries.US.states)
+    .map(
+      ([stateName, state]) => `
+    """
+    COVID19 Statistics in ${stateName}
+    """
+    ${state.code} : Stats!`,
+    )
     .join('\r\n')}
 `;
 
 const chinaStatsTypeDefs = `
-  ${Object.values(countries.China.states)
-    .map((state) => `${state.code} : Stats!`)
+  ${Object.entries(countries.China.states)
+    .map(
+      ([stateName, state]) => `
+    """
+    COVID19 Statistics in ${stateName}
+    """
+    ${state.code} : Stats!`,
+    )
     .join('\r\n')}
 `;
 
 const countriesStatsTypeDefs = `
-  ${Object.values(countries)
-    .map((country) => {
+  ${Object.entries(countries)
+    .map(([countryName, country]) => {
       if (country.code === 'Global') {
         return '';
       }
       if (['Australia', 'US', 'Canada', 'China'].find((drillDownCountry) => drillDownCountry === country.code)) {
-        return `${country.code}: ${country.code}Stats!`;
+        return `
+        """
+        COVID19 Statistics in ${countryName}
+        """
+        ${country.code}: ${country.code}Stats!`;
       } else {
-        return `${country.code}: Stats!`;
+        return `
+        """
+        COVID19 Statistics in ${countryName}
+        """
+        ${country.code}: Stats!`;
       }
     })
     .join('\r\n')}
