@@ -1,19 +1,27 @@
 import { gql } from 'apollo-server-express';
 
-export const typeDefs = gql`
-  """
-  COVID19 Statistics of a generic region, for instance NSW, VIC or QLD
-  """
-  type Stats {
+import { default as countries } from '../config/countries.json';
+
+const baseStatsTypeDefs = `
     """
     The total confirmed cases of COVID19 infection
     """
     totalConfirmedCases: Int!
 
     """
+    The net total confirmed cases of COVID19 infection of the past day. It equals to (total confirmed case - total death toll - total recovered cases)
+    """
+    netTotalConfirmedCases: Int!
+
+    """
     The newly confirmed cases of COVID19 infection of the past day
     """
     newlyConfirmedCases: Int!
+
+    """
+    The net newly confirmed cases of COVID19 infection of the past day. It equals to (total newly confirmed case - new death toll - newly recovered cases)
+    """
+    netNewlyConfirmedCases: Int!
 
     """
     The total death toll caused by COVID19 infection
@@ -39,213 +47,116 @@ export const typeDefs = gql`
     The date and time the data was last updated at John Hopkins University
     """
     lastUpdatedDate: String!
+`;
+
+const statsTypeDefs = `
+
+    ${baseStatsTypeDefs}
 
     """
     The past COVID19 infection statistics
     """
     history: [History]!
+`;
+
+const australiaStatsTypeDefs = `
+  ${Object.values(countries.Australia.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const canadaStatsTypeDefs = `
+  ${Object.values(countries.Canada.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const usStatsTypeDefs = `
+  ${Object.values(countries.US.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const chinaStatsTypeDefs = `
+  ${Object.values(countries.China.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const countriesStatsTypeDefs = `
+  ${Object.values(countries)
+    .map((country) => {
+      if (country.code === 'Global') {
+        return '';
+      }
+      if (['Australia', 'US', 'Canada', 'China'].find((drillDownCountry) => drillDownCountry === country.code)) {
+        return `${country.code}: ${country.code}Stats!`;
+      } else {
+        return `${country.code}: Stats!`;
+      }
+    })
+    .join('\r\n')}
+`;
+
+export const typeDefs = gql`
+  """
+  COVID19 Statistics of a generic region, for instance NSW, VIC or QLD
+  """
+  type Stats {
+    ${statsTypeDefs}
   }
 
   """
   COVID19 infection statistics of a past day
   """
   type History {
-    """
-    The date of the statistics is for
-    """
-    date: String!
-
-    """
-    The date and time the data was last updated at John Hopkins University
-    """
-    lastUpdatedDate: String!
-
-    """
-    The total confirmed cases of COVID19 infection on the day
-    """
-    confirmed: Int!
-
-    """
-    The death toll caused by COVID19 infection of the day
-    """
-    deaths: Int!
-
-    """
-    The number of newly recovered cases from COVID19 infection of the day
-    """
-    recovered: Int!
+    ${baseStatsTypeDefs}
   }
 
   """
-  COVID19 Statistics of Australia
+  COVID19 Statistics in Australia
   """
-  type AUStats {
-    """
-    The total confirmed cases of COVID19 infection
-    """
-    totalConfirmedCases: Int!
+  type AustraliaStats{
+    ${statsTypeDefs}
 
-    """
-    The newly confirmed cases of COVID19 infection of the past day
-    """
-    newlyConfirmedCases: Int!
-
-    """
-    The total death toll caused by COVID19 infection
-    """
-    totalDeaths: Int!
-
-    """
-    The death toll caused by COVID19 infection of the past day
-    """
-    newDeaths: Int!
-
-    """
-    The total number of recovered cases from COVID19 infection
-    """
-    totalRecoveredCases: Int!
-
-    """
-    The number of newly recovered cases from COVID19 infection of the past day
-    """
-    newlyRecoveredCases: Int!
-
-    """
-    The date and time the data was last updated at John Hopkins University
-    """
-    lastUpdatedDate: String!
-
-    """
-    The past COVID19 infection statistics
-    """
-    history: [History]!
-
-    """
-    COVID19 Statistics of New South Wales
-    """
-    NSW: Stats!
-
-    """
-    COVID19 Statistics of Northern Territory
-    """
-    NT: Stats!
-
-    """
-    COVID19 Statistics of Queensland
-    """
-    QLD: Stats!
-
-    """
-    COVID19 Statistics of South Australia
-    """
-    SA: Stats!
-
-    """
-    COVID19 Statistics of Tasmania
-    """
-    TAS: Stats!
-
-    """
-    COVID19 Statistics of Victoria
-    """
-    VIC: Stats!
-
-    """
-    COVID19 Statistics of Western Australia
-    """
-    WA: Stats!
+    ${australiaStatsTypeDefs}
   }
 
-  type GlobalStats {
-    """
-    The total confirmed cases of COVID19 infection
-    """
-    totalConfirmedCases: Int!
+  """
+  COVID19 Statistics in China
+  """
+  type ChinaStats{
+    ${statsTypeDefs}
 
-    """
-    The newly confirmed cases of COVID19 infection of the past day
-    """
-    newlyConfirmedCases: Int!
+    ${chinaStatsTypeDefs}
+  }
 
-    """
-    The total death toll caused by COVID19 infection
-    """
-    totalDeaths: Int!
 
-    """
-    The death toll caused by COVID19 infection of the past day
-    """
-    newDeaths: Int!
+  """
+  COVID19 Statistics in Canada
+  """
+  type CanadaStats{
+    ${statsTypeDefs}
 
-    """
-    The total number of recovered cases from COVID19 infection
-    """
-    totalRecoveredCases: Int!
+    ${canadaStatsTypeDefs}
+  }
 
-    """
-    The number of newly recovered cases from COVID19 infection of the past day
-    """
-    newlyRecoveredCases: Int!
+  """
+  COVID19 Statistics in US
+  """
+  type USStats {
+    ${statsTypeDefs}
 
-    """
-    The date and time the data was last updated at John Hopkins University
-    """
-    lastUpdatedDate: String!
+    ${usStatsTypeDefs}
+  }
 
-    """
-    The past COVID19 infection statistics
-    """
-    history: [History]!
+  """
+  COVID19 Statistics around the World
+  """
+  type GlobalStats{
+    ${statsTypeDefs}
 
-    """
-    COVID19 Statistics of Australia
-    """
-    AU: AUStats!
-
-    """
-    COVID19 Statistics of China
-    """
-    CN: Stats!
-
-    """
-    COVID19 Statistics of Italy
-    """
-    IT: Stats!
-
-    """
-    COVID19 Statistics of Japan
-    """
-    JP: Stats!
-
-    """
-    COVID19 Statistics of Korea
-    """
-    KR: Stats!
-
-    """
-    COVID19 Statistics of United States
-    """
-    US: Stats!
-
-    """
-    COVID19 Statistics of United Kingdom
-    """
-    UK: Stats!
-
-    """
-    COVID19 Statistics of France
-    """
-    FR: Stats!
-
-    """
-    COVID19 Statistics of Germany
-    """
-    DE: Stats!
-
-    """
-    COVID19 Statistics of Spain
-    """
-    ES: Stats!
+    ${countriesStatsTypeDefs}
   }
 
   """
