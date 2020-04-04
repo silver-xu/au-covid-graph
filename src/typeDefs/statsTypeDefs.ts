@@ -248,9 +248,10 @@ export const typeDefs = gql`
     ES: Stats!
   }
 
-  # The schema’s entry-point for queries. This acts as the public, top-level API
-  # from which all queries must start.
-
+  """
+  The schema’s entry-point for queries. This acts as the public, top-level API
+  from which all queries must start.
+  """
   type Query {
     """
     COVID19 Statistics of the World
