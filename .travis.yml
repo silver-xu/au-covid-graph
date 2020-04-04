@@ -6,12 +6,10 @@ jobs:
     - stage: test
       script: yarn test
     - stage: deploy
-      on:
-        branch: master
+      if: branch = master
       script: yarn deploy
     - stage: doc publish
-      on:
-        branch: master
+      if: branch = master
       script: yarn doc:publish
 after_success:
   - yarn codecov
