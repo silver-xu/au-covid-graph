@@ -1,31 +1,38 @@
 import { getStatsByRegionCodeCached } from '../services/dynamo';
 import { Stats } from '../types/stats';
 
+import { default as countries } from '../config/countries.json';
+
 export const resolvers = {
   Query: {
     global: async (): Promise<Stats> => await getStatsByRegionCodeCached('Global'),
   },
-  GlobalStats: {
-    Australia: async (): Promise<Stats> => await getStatsByRegionCodeCached('Australia'),
-    China: async (): Promise<Stats> => await getStatsByRegionCodeCached('China'),
-    Italy: async (): Promise<Stats> => await getStatsByRegionCodeCached('Italy'),
-    Japan: async (): Promise<Stats> => await getStatsByRegionCodeCached('Japan'),
-    SouthKorea: async (): Promise<Stats> => await getStatsByRegionCodeCached('SouthKorea'),
-    US: async (): Promise<Stats> => await getStatsByRegionCodeCached('US'),
-    UK: async (): Promise<Stats> => await getStatsByRegionCodeCached('UK'),
-    France: async (): Promise<Stats> => await getStatsByRegionCodeCached('France'),
-    Germany: async (): Promise<Stats> => await getStatsByRegionCodeCached('Germany'),
-    Spain: async (): Promise<Stats> => await getStatsByRegionCodeCached('Spain'),
-  },
-  AUStats: {
-    NewSouthWales: async (): Promise<Stats> => await getStatsByRegionCodeCached('NewSouthWales'),
-    NothernTerritory: async (): Promise<Stats> => await getStatsByRegionCodeCached('NothernTerritory'),
-    Queensland: async (): Promise<Stats> => await getStatsByRegionCodeCached('Queensland'),
-    SouthAustralia: async (): Promise<Stats> => await getStatsByRegionCodeCached('SouthAustralia'),
-    Tasmania: async (): Promise<Stats> => await getStatsByRegionCodeCached('Tasmania'),
-    Victoria: async (): Promise<Stats> => await getStatsByRegionCodeCached('Victoria'),
-    WesternAustralia: async (): Promise<Stats> => await getStatsByRegionCodeCached('WesternAustralia'),
-    AustralianCapitalTerritory: async (): Promise<Stats> =>
-      await getStatsByRegionCodeCached('AustralianCapitalTerritory'),
-  },
+  GlobalStats: {},
+  AustraliaStats: {},
+  ChinaStats: {},
+  USStats: {},
+  CanadaStats: {},
 };
+
+Object.values(countries).forEach((country) => {
+  if (country.code !== 'Global') {
+    resolvers.GlobalStats[`${country.code}`] = async (): Promise<Stats> =>
+      await getStatsByRegionCodeCached(country.code);
+  }
+});
+
+Object.values(countries.Australia.states).forEach((state) => {
+  resolvers.AustraliaStats[`${state.code}`] = async (): Promise<Stats> => await getStatsByRegionCodeCached(state.code);
+});
+
+Object.values(countries.China.states).forEach((state) => {
+  resolvers.ChinaStats[`${state.code}`] = async (): Promise<Stats> => await getStatsByRegionCodeCached(state.code);
+});
+
+Object.values(countries.Canada.states).forEach((state) => {
+  resolvers.CanadaStats[`${state.code}`] = async (): Promise<Stats> => await getStatsByRegionCodeCached(state.code);
+});
+
+Object.values(countries.US.states).forEach((state) => {
+  resolvers.USStats[`${state.code}`] = async (): Promise<Stats> => await getStatsByRegionCodeCached(state.code);
+});

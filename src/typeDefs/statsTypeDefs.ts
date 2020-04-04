@@ -1,5 +1,7 @@
 import { gql } from 'apollo-server-express';
 
+import { default as countries } from '../config/countries.json';
+
 const baseStatsTypeDefs = `
     """
     The total confirmed cases of COVID19 infection
@@ -54,7 +56,46 @@ const statsTypeDefs = `
     """
     The past COVID19 infection statistics
     """
-    history: [History]!      
+    history: [History]!
+`;
+
+const australiaStatsTypeDefs = `
+  ${Object.values(countries.Australia.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const canadaStatsTypeDefs = `
+  ${Object.values(countries.Canada.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const usStatsTypeDefs = `
+  ${Object.values(countries.US.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const chinaStatsTypeDefs = `
+  ${Object.values(countries.China.states)
+    .map((state) => `${state.code} : Stats!`)
+    .join('\r\n')}
+`;
+
+const countriesStatsTypeDefs = `
+  ${Object.values(countries)
+    .map((country) => {
+      if (country.code === 'Global') {
+        return '';
+      }
+      if (['Australia', 'US', 'Canada', 'China'].find((drillDownCountry) => drillDownCountry === country.code)) {
+        return `${country.code}: ${country.code}Stats!`;
+      } else {
+        return `${country.code}: Stats!`;
+      }
+    })
+    .join('\r\n')}
 `;
 
 export const typeDefs = gql`
@@ -73,104 +114,49 @@ export const typeDefs = gql`
   }
 
   """
-  COVID19 Statistics of Australia
+  COVID19 Statistics in Australia
   """
-  type AUStats{
+  type AustraliaStats{
     ${statsTypeDefs}
 
-    """
-    COVID19 Statistics of Australian Capital Territory
-    """
-    AustralianCapitalTerritory: Stats!
-
-    """
-    COVID19 Statistics of New South Wales
-    """
-    NewSouthWales: Stats!
-
-    """
-    COVID19 Statistics of Northern Territory
-    """
-    NothernTerritory: Stats!
-
-    """
-    COVID19 Statistics of Queensland
-    """
-    Queensland: Stats!
-
-    """
-    COVID19 Statistics of South Australia
-    """
-    SouthAustralia: Stats!
-
-    """
-    COVID19 Statistics of Tasmania
-    """
-    Tasmania: Stats!
-
-    """
-    COVID19 Statistics of Victoria
-    """
-    Victoria: Stats!
-
-    """
-    COVID19 Statistics of Western Australia
-    """
-    WesternAustralia: Stats!
+    ${australiaStatsTypeDefs}
   }
 
+  """
+  COVID19 Statistics in China
+  """
+  type ChinaStats{
+    ${statsTypeDefs}
+
+    ${chinaStatsTypeDefs}
+  }
+
+
+  """
+  COVID19 Statistics in Canada
+  """
+  type CanadaStats{
+    ${statsTypeDefs}
+
+    ${canadaStatsTypeDefs}
+  }
+
+  """
+  COVID19 Statistics in US
+  """
+  type USStats {
+    ${statsTypeDefs}
+
+    ${usStatsTypeDefs}
+  }
+
+  """
+  COVID19 Statistics around the World
+  """
   type GlobalStats{
     ${statsTypeDefs}
 
-    """
-    COVID19 Statistics of Australia
-    """
-    Australia: AUStats!
-
-    """
-    COVID19 Statistics of China
-    """
-    China: Stats!
-
-    """
-    COVID19 Statistics of Italy
-    """
-    Italy: Stats!
-
-    """
-    COVID19 Statistics of Japan
-    """
-    Japan: Stats!
-
-    """
-    COVID19 Statistics of South Korea
-    """
-    SouthKorea: Stats!
-
-    """
-    COVID19 Statistics of United States
-    """
-    US: Stats!
-
-    """
-    COVID19 Statistics of United Kingdom
-    """
-    UK: Stats!
-
-    """
-    COVID19 Statistics of France
-    """
-    France: Stats!
-
-    """
-    COVID19 Statistics of Germany
-    """
-    Germany: Stats!
-
-    """
-    COVID19 Statistics of Spain
-    """
-    Spain: Stats!
+    ${countriesStatsTypeDefs}
   }
 
   """
