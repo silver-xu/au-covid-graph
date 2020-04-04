@@ -1,19 +1,25 @@
 import { gql } from 'apollo-server-express';
 
-export const typeDefs = gql`
-  """
-  COVID19 Statistics of a generic region, for instance NSW, VIC or QLD
-  """
-  type Stats {
+const baseStatsTypeDefs = `
     """
     The total confirmed cases of COVID19 infection
     """
     totalConfirmedCases: Int!
 
     """
+    The net total confirmed cases of COVID19 infection of the past day. It equals to (total confirmed case - total death toll - total recovered cases)
+    """
+    netTotalConfirmedCases: Int!
+
+    """
     The newly confirmed cases of COVID19 infection of the past day
     """
     newlyConfirmedCases: Int!
+
+    """
+    The net newly confirmed cases of COVID19 infection of the past day. It equals to (total newly confirmed case - new death toll - newly recovered cases)
+    """
+    netNewlyConfirmedCases: Int!
 
     """
     The total death toll caused by COVID19 infection
@@ -39,188 +45,107 @@ export const typeDefs = gql`
     The date and time the data was last updated at John Hopkins University
     """
     lastUpdatedDate: String!
+`;
+
+const statsTypeDefs = `
+
+    ${baseStatsTypeDefs}
 
     """
     The past COVID19 infection statistics
     """
-    history: [History]!
+    history: [History]!      
+`;
+
+export const typeDefs = gql`
+  """
+  COVID19 Statistics of a generic region, for instance NSW, VIC or QLD
+  """
+  type Stats {
+    ${statsTypeDefs}
   }
 
   """
   COVID19 infection statistics of a past day
   """
   type History {
-    """
-    The date of the statistics is for
-    """
-    date: String!
-
-    """
-    The date and time the data was last updated at John Hopkins University
-    """
-    lastUpdatedDate: String!
-
-    """
-    The total confirmed cases of COVID19 infection on the day
-    """
-    confirmed: Int!
-
-    """
-    The death toll caused by COVID19 infection of the day
-    """
-    deaths: Int!
-
-    """
-    The number of newly recovered cases from COVID19 infection of the day
-    """
-    recovered: Int!
+    ${baseStatsTypeDefs}
   }
 
   """
   COVID19 Statistics of Australia
   """
-  type AUStats {
-    """
-    The total confirmed cases of COVID19 infection
-    """
-    totalConfirmedCases: Int!
+  type AUStats{
+    ${statsTypeDefs}
 
     """
-    The newly confirmed cases of COVID19 infection of the past day
+    COVID19 Statistics of Australian Capital Territory
     """
-    newlyConfirmedCases: Int!
-
-    """
-    The total death toll caused by COVID19 infection
-    """
-    totalDeaths: Int!
-
-    """
-    The death toll caused by COVID19 infection of the past day
-    """
-    newDeaths: Int!
-
-    """
-    The total number of recovered cases from COVID19 infection
-    """
-    totalRecoveredCases: Int!
-
-    """
-    The number of newly recovered cases from COVID19 infection of the past day
-    """
-    newlyRecoveredCases: Int!
-
-    """
-    The date and time the data was last updated at John Hopkins University
-    """
-    lastUpdatedDate: String!
-
-    """
-    The past COVID19 infection statistics
-    """
-    history: [History]!
+    AustralianCapitalTerritory: Stats!
 
     """
     COVID19 Statistics of New South Wales
     """
-    NSW: Stats!
+    NewSouthWales: Stats!
 
     """
     COVID19 Statistics of Northern Territory
     """
-    NT: Stats!
+    NothernTerritory: Stats!
 
     """
     COVID19 Statistics of Queensland
     """
-    QLD: Stats!
+    Queensland: Stats!
 
     """
     COVID19 Statistics of South Australia
     """
-    SA: Stats!
+    SouthAustralia: Stats!
 
     """
     COVID19 Statistics of Tasmania
     """
-    TAS: Stats!
+    Tasmania: Stats!
 
     """
     COVID19 Statistics of Victoria
     """
-    VIC: Stats!
+    Victoria: Stats!
 
     """
     COVID19 Statistics of Western Australia
     """
-    WA: Stats!
+    WesternAustralia: Stats!
   }
 
-  type GlobalStats {
-    """
-    The total confirmed cases of COVID19 infection
-    """
-    totalConfirmedCases: Int!
-
-    """
-    The newly confirmed cases of COVID19 infection of the past day
-    """
-    newlyConfirmedCases: Int!
-
-    """
-    The total death toll caused by COVID19 infection
-    """
-    totalDeaths: Int!
-
-    """
-    The death toll caused by COVID19 infection of the past day
-    """
-    newDeaths: Int!
-
-    """
-    The total number of recovered cases from COVID19 infection
-    """
-    totalRecoveredCases: Int!
-
-    """
-    The number of newly recovered cases from COVID19 infection of the past day
-    """
-    newlyRecoveredCases: Int!
-
-    """
-    The date and time the data was last updated at John Hopkins University
-    """
-    lastUpdatedDate: String!
-
-    """
-    The past COVID19 infection statistics
-    """
-    history: [History]!
+  type GlobalStats{
+    ${statsTypeDefs}
 
     """
     COVID19 Statistics of Australia
     """
-    AU: AUStats!
+    Australia: AUStats!
 
     """
     COVID19 Statistics of China
     """
-    CN: Stats!
+    China: Stats!
 
     """
     COVID19 Statistics of Italy
     """
-    IT: Stats!
+    Italy: Stats!
 
     """
     COVID19 Statistics of Japan
     """
-    JP: Stats!
+    Japan: Stats!
 
     """
-    COVID19 Statistics of Korea
+    COVID19 Statistics of South Korea
     """
-    KR: Stats!
+    SouthKorea: Stats!
 
     """
     COVID19 Statistics of United States
@@ -235,17 +160,17 @@ export const typeDefs = gql`
     """
     COVID19 Statistics of France
     """
-    FR: Stats!
+    France: Stats!
 
     """
     COVID19 Statistics of Germany
     """
-    DE: Stats!
+    Germany: Stats!
 
     """
     COVID19 Statistics of Spain
     """
-    ES: Stats!
+    Spain: Stats!
   }
 
   """
