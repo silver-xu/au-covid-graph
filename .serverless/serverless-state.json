@@ -185,7 +185,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/au-covid-graphql/prod/1585968484513-2020-04-04T02:48:04.513Z/au-covid-graphql.zip"
+                "S3Key": "serverless/au-covid-graphql/prod/1585976731422-2020-04-04T05:05:31.422Z/au-covid-graphql.zip"
               },
               "FunctionName": "au-covid-graphql-prod-api",
               "Handler": "dist/index.handler",
@@ -210,14 +210,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "ApiLambdaVersionujcrOazKqVUvgvEDuHi62Azmr826EsfjJpCcd16lE": {
+          "ApiLambdaVersionFEGOa2OS3ZnriFAvZMRI7aVMC7lhT5yv2J2VhH8mw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "JsFzjZVIxuFXFSnsbFyQODguhfhPbVz70K7uiEUeKOQ="
+              "CodeSha256": "jnsGOuq96pWrEACxoUWbxcQ8rRflP7JkwYPhZf7YJ6g="
             }
           },
           "ApiGatewayRestApi": {
@@ -335,7 +335,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1585968465534": {
+          "ApiGatewayDeployment1585976714570": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -449,7 +449,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionujcrOazKqVUvgvEDuHi62Azmr826EsfjJpCcd16lE"
+              "Ref": "ApiLambdaVersionFEGOa2OS3ZnriFAvZMRI7aVMC7lhT5yv2J2VhH8mw"
             }
           },
           "ServiceEndpoint": {
@@ -608,7 +608,7 @@
         "timeout": 30,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionujcrOazKqVUvgvEDuHi62Azmr826EsfjJpCcd16lE"
+        "versionLogicalId": "ApiLambdaVersionFEGOa2OS3ZnriFAvZMRI7aVMC7lhT5yv2J2VhH8mw"
       }
     },
     "resources": {
@@ -676,7 +676,7 @@
     "artifact": "/mnt/c/Repositories/au-covid-graphql/.serverless/au-covid-graphql.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/au-covid-graphql/prod/1585968484513-2020-04-04T02:48:04.513Z",
+    "artifactDirectoryName": "serverless/au-covid-graphql/prod/1585976731422-2020-04-04T05:05:31.422Z",
     "artifact": "au-covid-graphql.zip"
   }
 }

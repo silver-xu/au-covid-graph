@@ -1,10 +1,9 @@
 {
   "name": "COVID19 GraphQL API",
   "version": "1.0.0",
-  "description": "<br/><p>The COVID19 statistics and history data GraphQL API. The data was extracted from John Hopkins Medical School on Daily basis. There is no rate limiting so please be reasonable on when invoking the API. CORS and Playground are all Enabled.</p><br/><p>Currently only supporting Australia, China, Italy, Japan, South Korea, US, UK, France, Germany and Spain. All Australian States can also be nestedly queried.</p><br/><p>The author's employment is also impacted by COVID19. Please email me at me@silverxu.com if there is an opportunity.",
-  "homepage": "https://www.linkedin.com/in/silverxu/",
+  "description": "<br/><a>https://api.covidstats.com.au/graphql</a><br/><br/><p>This is the COVID19 statistics and history data GraphQL API documentation. The statistics were extracted from John Hopkins Medical School on Daily basis. CORS is enabled without rate limiting, therefore please implement client-side caching.",
   "graphdoc": {
-    "ga": "UA-54154153-2",
+    "graphiql": "https://api.covidstats.com.au/graphql",
     "endpoint": "https://api.covidstats.com.au/graphql",
     "output": "./docs"
   }
