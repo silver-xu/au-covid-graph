@@ -26,7 +26,6 @@ const getStatsByRegionCode = async (regionCode: string): Promise<Stats | undefin
 
     if (response && response.Item) {
       const statsResponse = response.Item;
-      statsResponse.lastUpdatedDate = moment.tz(response.Item.lastUpdatedDate, 'Australia/Sydney').format();
       statsResponse.history = mapStatsHistory(statsResponse.history);
 
       return statsResponse as Stats;
