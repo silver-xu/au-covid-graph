@@ -143,6 +143,8 @@ export const typeDefs = gql`
   """
   type History {
     ${baseStatsTypeDefs}
+
+    date: String!
   }
 
   """
