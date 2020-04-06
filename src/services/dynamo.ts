@@ -4,6 +4,7 @@ import moment from 'moment-timezone';
 
 import { Stats } from '../types/stats';
 import { mapStatsHistory } from '../mapper/mapStatsHistory';
+import { getNamedType } from 'graphql';
 
 const STATS_TABLE_NAME = 'au-covid-spider-prod';
 const CACHE_TTL = 3600;
@@ -30,7 +31,18 @@ const getStatsByRegionCode = async (regionCode: string): Promise<Stats | undefin
 
       return statsResponse as Stats;
     } else {
-      return undefined;
+      return {
+        totalConfirmedCases: 0,
+        netTotalConfirmedCases: 0,
+        newlyConfirmedCases: 0,
+        netNewlyConfirmedCases: 0,
+        totalDeaths: 0,
+        newDeaths: 0,
+        totalRecoveredCases: 0,
+        newlyRecoveredCases: 0,
+        lastUpdatedDate: new Date().toISOString(),
+        history: [],
+      };
     }
   } catch (error) {
     console.error(error);
