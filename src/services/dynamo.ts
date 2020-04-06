@@ -33,7 +33,7 @@ const getStatsByRegionCode = async (regionCode: string): Promise<Stats | undefin
     } else {
       return {
         totalConfirmedCases: 0,
-        netTotalConfirmedCases: 0,
+        currentConfirmedCases: 0,
         newlyConfirmedCases: 0,
         netNewlyConfirmedCases: 0,
         totalDeaths: 0,

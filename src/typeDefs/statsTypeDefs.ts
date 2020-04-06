@@ -11,7 +11,7 @@ const baseStatsTypeDefs = `
     """
     The net total confirmed cases of COVID19 infection of the past day. It equals to (total confirmed case - total death toll - total recovered cases)
     """
-    netTotalConfirmedCases: Int!
+    currentConfirmedCases: Int!
 
     """
     The newly confirmed cases of COVID19 infection of the past day
