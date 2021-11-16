@@ -43,7 +43,7 @@
   "dependencies": {
     "@types/aws-sdk": "^2.7.0",
     "apollo-server-express": "^2.11.0",
-    "aws-sdk": "^2.651.0",
+    "aws-sdk": "^2.814.0",
     "express": "^4.17.1",
     "graphql": "14.6.0",
     "moment-timezone": "^0.5.28",
